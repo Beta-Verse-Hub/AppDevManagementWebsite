@@ -1,0 +1,13 @@
+{
+    "admin" : [
+        "Change Database",
+        "Change User",
+        "Change Personal Information",
+        "Change Personal Projects"
+    ],
+    "user" : [
+        "Read User",
+        "Change Personal Information",
+        "Change Personal Projects"
+    ]
+}

@@ -85,3 +85,59 @@ def add_record(table_name, name, description, programmers, link):
 
     cursor.execute(f"INSERT INTO {table_name} (name, description, programmers, link) VALUES (?, ?, ?, ?)", (name, description, programmers, link))
     connected.commit()
+
+def update_record(table_name, id, property, value):
+    """
+    Updates a record in the given table with the given property and value.
+
+    Args:
+        table_name (str): The name of the table to update the record in.
+        id (int): The id of the record to update.
+        property (str): The name of the record's property to update.
+        value (str): The new value of the record's property.
+
+    Returns:
+        bool: True if the record was successfully updated, False if it was not.
+    """
+    if not check_for_table(table_name):
+        return False
+
+    cursor.execute(f"UPDATE {table_name} SET ? = ? WHERE id = ?", (property, value, id))
+    connected.commit()
+
+    return True
+
+def get_records(table_name):
+    """
+    Retrieves all records in the given table.
+
+    Args:
+        table_name (str): The name of the table to retrieve the records from.
+
+    Returns:
+        list: A list of tuples, where each tuple is a record in the given table.
+    """
+    check_for_table(table_name)
+    
+    cursor.execute(f"SELECT * FROM {table_name}")
+    result = cursor.fetchall()
+    
+    return result
+
+def get_record(table_name, id):
+    """
+    Retrieves a record from the given table with the given id.
+
+    Args:
+        table_name (str): The name of the table to retrieve the record from.
+        id (int): The id of the record to retrieve.
+
+    Returns:
+        tuple: The record with the given id, or None if no record was found.
+    """
+    check_for_table(table_name)
+    
+    cursor.execute(f"SELECT * FROM {table_name} WHERE id=?", (id,))
+    result = cursor.fetchone()
+    
+    return result
