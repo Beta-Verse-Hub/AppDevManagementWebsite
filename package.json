@@ -17,6 +17,7 @@
   "homepage": "https://github.com/Beta-Verse-Hub/AppDevManagementWebsite#readme",
   "description": "The site which manages the App Dev course's projects and user data",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "firebase": "^12.1.0"
   }
 }
